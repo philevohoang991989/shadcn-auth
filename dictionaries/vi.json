@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "pages": {
+    "home": {
+      "title": "Chào mừng đến với NextJs i18n",
+      "description": "Quốc tế hóa trong bộ định tuyến ứng dụng NextJs 14"
+    },
+    "dashboard": {
+      "title": "Trang Dashboard",
+      "description": "Đây là trang dashboard"
+    },
+    "account":{
+      "title":"Trang Account",
+      "description": "Đây là trang account",
+      "name":"Tên của bạn"
+    }
+  },
+  "auth": {
+    "signin": "Đăng Nhập",
+    "signout": "Đăng Xuất"
+  }
+}
