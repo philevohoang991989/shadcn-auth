@@ -15,7 +15,7 @@ interface Token {
 interface Session {
   // Define the properties of the session object
   // For example:
-  userId: string;
+  token: string;
   // Other properties...
 }
 
@@ -83,7 +83,7 @@ export const authOptions: any = {
       if (user) {
         return {
           ...token,
-          username: user.access_token,
+          token: user.access_token,
         };
       }
       return token;
@@ -93,10 +93,7 @@ export const authOptions: any = {
       
       return {
         ...session,
-        user: {
-          ...session.user,
-        },
-        token: token.username
+        token: token.token
       };
     },
   },
