@@ -11,7 +11,6 @@ import { signIn } from "next-auth/react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -29,9 +28,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "@/components/ui/use-toast";
 import useAxiosAuth from "@/lib/hook/useAxiosAuth";
 
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import SignInEmail from "./sign-in-email";
 import { useRouter } from "next/navigation";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -105,18 +101,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <Tabs defaultValue="email" className="w-[450px] h-[700px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="email">Login with email</TabsTrigger>
-          <TabsTrigger value="emailPassword">
-            Login with email and password
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="email">
-          <SignInEmail />
-        </TabsContent>
-        <TabsContent value="emailPassword">
-          <Form {...form}>
+       <Form {...form}>
             <Card>
               <form onSubmit={form.handleSubmit(onSubmit)}>
                 <CardHeader className="space-y-1">
@@ -222,8 +207,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               </form>
             </Card>
           </Form>
-        </TabsContent>
-      </Tabs>
     </div>
   );
 }
