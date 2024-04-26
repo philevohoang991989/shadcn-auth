@@ -38,7 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## ENV
 ```bash
 NEXTAUTH_SECRET="domainname.com"
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL=http://localhost:3000
+
+NEXT_PUBLIC_API_URL="https://aiwa.demo.bnksolution.com/api/backend"
 
 GOOGLE_CLIENT_ID="520525341317-a1mg83l95afbnvm8u9tgveotukqo021a.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET="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"

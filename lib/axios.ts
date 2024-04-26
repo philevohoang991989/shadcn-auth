@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = "https://sod-api.demo.bnksolution.com/api";
+const BASE_URL = "https://aiwa.demo.bnksolution.com/api/backend";
 
 export default axios.create({
     baseURL: BASE_URL,
