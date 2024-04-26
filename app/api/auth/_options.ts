@@ -4,6 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import EmailProvider from "next-auth/providers/email";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { log } from "console";
+import { NextAuthOptions } from "next-auth";
 // import prisma from "@/app/utils/db";
 
 interface Token {
@@ -19,7 +20,7 @@ interface Session {
   // Other properties...
 }
 
-export const authOptions: any = {
+export const authOptions: NextAuthOptions = {
   // adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   session: {

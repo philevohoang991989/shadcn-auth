@@ -27,8 +27,10 @@ export function withAuthMiddleware(middleware: CustomMiddleware) {
     // Create a response object to pass down the chain
     const response = NextResponse.next();
 
-    const token = await getToken({ req: request });
-
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
     // @ts-ignore
     request.nextauth = request.nextauth || {};
     // @ts-ignore
@@ -38,10 +40,12 @@ export function withAuthMiddleware(middleware: CustomMiddleware) {
     const protectedPathsWithLocale = getProtectedRoutes(protectedPaths, [
       ...i18n.locales,
     ]);
+    console.log({ protectedPathsWithLocale: token });
 
     if (!token && protectedPathsWithLocale.includes(pathname)) {
       const signInUrl = new URL("/log-in", request.url);
       signInUrl.searchParams.set("callbackUrl", pathname);
+      console.log("not login 1");
       return NextResponse.redirect(signInUrl);
     }
     if (
@@ -50,6 +54,8 @@ export function withAuthMiddleware(middleware: CustomMiddleware) {
       pathname !== "/register" &&
       protectedPathsWithLocale.includes(pathname)
     ) {
+      console.log("not login 2");
+
       return NextResponse.redirect(new URL("/log-in", request.url));
     }
 
