@@ -96,5 +96,9 @@ export const authOptions: any = {
         token: token.token
       };
     },
+    async redirect({ url, baseUrl }:{url: string, baseUrl: string}) {
+      console.log("baseUrl",baseUrl);
+      return `${baseUrl}/`;
+    },
   },
 };

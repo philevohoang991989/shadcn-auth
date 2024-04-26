@@ -6,9 +6,6 @@ import { axiosAuth } from "../axios";
 
 const useAxiosAuth = () =>{
     const {data: session} = useSession();
-    console.log({useAxiosAuth:session});
-    
-
     useEffect(()=>{
         const requestIntercept = axiosAuth.interceptors.request.use((config)=>{
             if(!config.headers["Authorization"]){

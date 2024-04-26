@@ -32,6 +32,7 @@ import useAxiosAuth from "@/lib/hook/useAxiosAuth";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignInEmail from "./sign-in-email";
+import { useRouter } from "next/navigation";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -66,7 +67,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState<boolean>(false);
   const [isLoadingGithub, setIsLoadingGithub] = useState<boolean>(false);
   const axiosAuth = useAxiosAuth();
-
+  const router = useRouter();
   const onSubmit = async (data: LoginFormValues) => {
     toast({
       title: "You submitted the following values:",
@@ -91,6 +92,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       redirect: false,
     });
     console.log({ signInData });
+    if (signInData?.error) {
+      // message.error('Oops! Something when wrong!');
+    } else {
+      router.push(`/`);
+    }
   };
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
