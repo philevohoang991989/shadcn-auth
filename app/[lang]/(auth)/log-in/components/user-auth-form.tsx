@@ -76,18 +76,21 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </pre>
       ),
     });
-    const res = axiosAuth.post("/Authentication/login", {
-      userName: btoa(data.username),
-      password: btoa(data.password),
-    });
-    console.log({ res });
+    // const res = axiosAuth.post("/auth/login", {
+    //   username: data.username,
+    //   password: data.password,
+    // }).then((res)=>{
+    //   console.log({res});
 
-    // const signInData = await signIn("credentials", {
-    //   userName: btoa(data.username),
-    //   password: btoa(data.password),
-    //   redirect: false,
-    // });
-    // console.log({signInData});
+    // })
+    // console.log({ res });
+
+    const signInData = await signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+    });
+    console.log({ signInData });
   };
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
@@ -99,10 +102,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <Tabs defaultValue="email" className="w-[450px] h-[700px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="email">Login with email</TabsTrigger>
-          <TabsTrigger value="emailPassword">Login with email and password</TabsTrigger>
+          <TabsTrigger value="emailPassword">
+            Login with email and password
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="email">
-          <SignInEmail/>
+          <SignInEmail />
         </TabsContent>
         <TabsContent value="emailPassword">
           <Form {...form}>
@@ -119,7 +124,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                       disabled={isLoadingGithub}
                       onClick={() => {
                         signIn("github", {
-                          callbackUrl:`${window.location.origin}`,
+                          callbackUrl: `${window.location.origin}`,
                         });
                         setIsLoadingGithub(true);
                       }}
@@ -137,7 +142,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                       disabled={isLoadingGoogle}
                       onClick={() => {
                         signIn("google", {
-                          callbackUrl:`${window.location.origin}`,
+                          callbackUrl: `${window.location.origin}`,
                         });
                         setIsLoadingGoogle(true);
                       }}
