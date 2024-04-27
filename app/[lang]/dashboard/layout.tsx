@@ -1,17 +1,11 @@
-import { Metadata } from "next";
+"use client";
 import Image from "next/image";
 
 import { Separator } from "@/components/ui/separator";
 import { SidebarNav } from "@/components/sidebar-nav";
-import Header from "@/components/header";
 import { Locale } from "@/i18n.config";
-import { dataMenu } from "@/constants";
-import { MenuDashBoard } from "@/components/menu-dashboard";
-
-export const metadata: Metadata = {
-  title: "Forms",
-  description: "Advanced form example using react-hook-form and Zod.",
-};
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const sidebarNavItems = [
   {
@@ -31,10 +25,13 @@ export default function SettingsLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
+  const session = useSession();
+
+  if (!session) {
+    return redirect("/log-in");
+  }
   return (
     <div className="mx-auto items-center justify-between">
-    
-
       <div className="md:hidden">
         <Image
           src="/examples/forms-light.png"

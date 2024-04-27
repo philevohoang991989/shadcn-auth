@@ -79,8 +79,10 @@ export const authOptions: NextAuthOptions = {
     
   ],
   callbacks: {
+   
+    
     async jwt({ token, user }:{token: any, user: any}) {
-
+      console.log('callbacks');
       if (user) {
         return {
           ...token,
@@ -97,9 +99,12 @@ export const authOptions: NextAuthOptions = {
         token: token.token
       };
     },
-    async redirect({ url, baseUrl }:{url: string, baseUrl: string}) {
-      console.log("baseUrl",baseUrl);
-      return `${baseUrl}/`;
-    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
+    }
   },
 };

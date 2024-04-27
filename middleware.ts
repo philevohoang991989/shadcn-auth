@@ -5,5 +5,5 @@ import { withI18nMiddleware } from '@/middlewares/middleware2'
 export default chain([withAuthMiddleware, withI18nMiddleware])
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)','/dashboard/:path*','/user/:path*'],
 }

@@ -23,7 +23,6 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-
   return (
     <html
       lang={params.lang}
